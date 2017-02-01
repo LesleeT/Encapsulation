@@ -38,7 +38,7 @@ public class Employee {
 
     // Assume this must be performed first, and assume that an employee
     // would only do this once, upon being hired.
-    public void meetWithHrForBenefitAndSalryInfo() {
+    private void meetWithHrForBenefitAndSalryInfo() {
         metWithHr = true;
         SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
         String fmtDate = sdf.format(orientationDate);        
@@ -48,7 +48,7 @@ public class Employee {
 
     // Assume this must be performed first, and assume that an employee
     // would only do this once, upon being hired.:
-    public void meetDepartmentStaff() {
+    private void meetDepartmentStaff() {
         metDeptStaff = true;
         SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
         String fmtDate = sdf.format(orientationDate);        
@@ -59,26 +59,38 @@ public class Employee {
     // Assume this must be performed third. And assume that because department
     // policies may change that this method may need to be called 
     // independently from other classes.
-    public void reviewDeptPolicies() {
+    public String reviewDeptPolicies() {
         reviewedDeptPolicies = true;
+        return getNewReviewDeptPolicies();
+   
+    }
+
+    public String getNewReviewDeptPolicies(){
         SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
         String fmtDate = sdf.format(orientationDate);        
         System.out.println(firstName + " " + lastName + " reviewed Dept policies on "
             + fmtDate);
+        return fmtDate();
     }
-
+    
+    
     // Assume this must be performed 4th. And assume that because employees
     // sometimes change office locations that this method may need to be called 
     // independently from other classes.
-    public void moveIntoCubicle(String cubeId) {
+    public String moveIntoCubicle(String cubeId) {
         this.cubeId = cubeId;
         this.movedIn = true;
+        return getNewMoveToCubicle();
+    }
+
+    public String getNewMoveToCubicle(){
         SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
         String fmtDate = sdf.format(orientationDate);        
         System.out.println(firstName + " " + lastName + " moved into cubicle "
                 + cubeId + " on " + fmtDate);
+        return getNewMoveToCubicle();
     }
-
+    
     public String getFirstName() {
         return firstName;
     }
