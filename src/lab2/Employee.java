@@ -28,7 +28,7 @@ public class Employee {
     private boolean reviewedDeptPolicies;
     private boolean movedIn;
     private String cubeId;
-    private Date orientationDate;
+    private Date orientationDate;    
 
     public Employee(String firstName, String lastName, String ssn) {
         this.firstName = firstName;
@@ -36,24 +36,32 @@ public class Employee {
         this.ssn = ssn;
     }
 
+    public void doEmployeeOrientation(){
+        meetWithHrForBenefitAndSalryInfo();
+        meetDepartmentStaff();
+        reviewDeptPolicies();
+    }
+    
+    public String getFormattedDate(){
+        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
+        return sdf.format(orientationDate); 
+    }
+    
+    
     // Assume this must be performed first, and assume that an employee
     // would only do this once, upon being hired.
     private void meetWithHrForBenefitAndSalryInfo() {
-        metWithHr = true;
-        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-        String fmtDate = sdf.format(orientationDate);        
+        metWithHr = true;       
         System.out.println(firstName + " " + lastName + " met with Hr on "
-            + fmtDate);
+            + getFormattedDate());
     }
 
-    // Assume this must be performed first, and assume that an employee
+    // Assume this must be performed secpnd, and assume that an employee
     // would only do this once, upon being hired.:
     private void meetDepartmentStaff() {
-        metDeptStaff = true;
-        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-        String fmtDate = sdf.format(orientationDate);        
+        metDeptStaff = true;       
         System.out.println(firstName + " " + lastName + " met with Dept. Staff on "
-            + fmtDate);
+            + getFormattedDate());
     }
 
     // Assume this must be performed third. And assume that because department
@@ -65,12 +73,10 @@ public class Employee {
    
     }
 
-    public String getNewReviewDeptPolicies(){
-        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-        String fmtDate = sdf.format(orientationDate);        
+    public String getNewReviewDeptPolicies(){        
         System.out.println(firstName + " " + lastName + " reviewed Dept policies on "
-            + fmtDate);
-        return fmtDate();
+            + getFormattedDate());
+        return getFormattedDate();
     }
     
     

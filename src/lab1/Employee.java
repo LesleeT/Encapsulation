@@ -12,7 +12,8 @@ import java.util.Date;
  * @version     1.02
  */
 public class Employee {
-    public final String COMPANY_NAME = "Acme";
+    private static String teacher = "Jim";//example of a static
+    public final String COMPANY_NAME = "Acme";//example of a constant
     private String firstName;
     private String lastName;
     private String ssn;
@@ -22,6 +23,13 @@ public class Employee {
     private boolean movedIn;
     private String cubeId;
     private Date orientationDate;
+    
+    public void setTeacher(String teacher){
+        Employee.teacher = teacher;//you don't do "this.teacher" because it belongs to the class not the object
+    }
+    public String getTeacher(){
+        return Employee.teacher;
+    }
     
     public String getLastName() {
         return lastName;
