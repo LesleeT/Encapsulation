@@ -28,7 +28,8 @@ public class Employee {
     private boolean reviewedDeptPolicies;
     private boolean movedIn;
     private String cubeId;
-    private Date orientationDate;    
+    private Date orientationDate;   
+    private Date moveCubicleDate;
 
     public Employee(String firstName, String lastName, String ssn) {
         this.firstName = firstName;
@@ -85,13 +86,15 @@ public class Employee {
         this.movedIn = true;
         getNewMoveToCubicleDate();
     }
-
-    public String getNewMoveToCubicleDate(){
-//        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-//        String fmtDate = sdf.format(orientationDate);        
+    public String getMovedFromCubicleDate(){
+        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
+        return sdf.format(moveCubicleDate); 
+    }
+      
+    public String getNewMoveToCubicleDate(){       
         System.out.println(firstName + " " + lastName + " moved into cubicle "
-                + cubeId + " on " + getFormattedDate());
-        return getFormattedDate();
+                + cubeId + " on " + getMovedFromCubicleDate());
+        return getMovedFromCubicleDate();
     }
     
     public String getFirstName() {
