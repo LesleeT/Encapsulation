@@ -29,25 +29,25 @@ public class Employee {
     private boolean movedIn;
     private String cubeId;
     private Date orientationDate;   
-    private Date moveCubicleDate;
 
     public Employee(String firstName, String lastName, String ssn) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.ssn = ssn;
     }
-
-    public void doEmployeeOrientation(){
-        meetWithHrForBenefitAndSalryInfo();
-        meetDepartmentStaff();
-        reviewDeptPolicies();
-    }
-    
+ 
     public String getFormattedDate(){
         SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
         return sdf.format(orientationDate); 
     }
-       
+    
+    public void doOrientation(String cubeId){
+        meetWithHrForBenefitAndSalryInfo();
+        meetDepartmentStaff();
+        reviewDeptPolicies();
+        moveIntoCubicle(cubeId);
+    }
+    
     // Assume this must be performed first, and assume that an employee
     // would only do this once, upon being hired.
     private void meetWithHrForBenefitAndSalryInfo() {
@@ -82,18 +82,22 @@ public class Employee {
     // sometimes change office locations that this method may need to be called 
     // independently from other classes.
     public void moveIntoCubicle(String cubeId) {
+        if(cubeId == null || cubeId.isEmpty()){
+            System.out.println("Error");
+        }else{
         this.cubeId = cubeId;
         this.movedIn = true;
         getNewMoveToCubicleDate();
+        }
     }
     public String getMovedFromCubicleDate(){
         SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-        return sdf.format(moveCubicleDate); 
+        return sdf.format(getFormattedDate()); 
     }
       
     public String getNewMoveToCubicleDate(){       
         System.out.println(firstName + " " + lastName + " moved into cubicle "
-                + cubeId + " on " + getMovedFromCubicleDate());
+                + cubeId + " on " + getFormattedDate());
         return getMovedFromCubicleDate();
     }
     
