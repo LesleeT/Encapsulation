@@ -46,8 +46,7 @@ public class Employee {
         SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
         return sdf.format(orientationDate); 
     }
-    
-    
+       
     // Assume this must be performed first, and assume that an employee
     // would only do this once, upon being hired.
     private void meetWithHrForBenefitAndSalryInfo() {
@@ -70,7 +69,6 @@ public class Employee {
     public String reviewDeptPolicies() {
         reviewedDeptPolicies = true;
         return getNewReviewDeptPolicies();
-   
     }
 
     public String getNewReviewDeptPolicies(){        
@@ -78,23 +76,22 @@ public class Employee {
             + getFormattedDate());
         return getFormattedDate();
     }
-    
-    
+       
     // Assume this must be performed 4th. And assume that because employees
     // sometimes change office locations that this method may need to be called 
     // independently from other classes.
-    public String moveIntoCubicle(String cubeId) {
+    public void moveIntoCubicle(String cubeId) {
         this.cubeId = cubeId;
         this.movedIn = true;
-        return getNewMoveToCubicle();
+        getNewMoveToCubicleDate();
     }
 
-    public String getNewMoveToCubicle(){
-        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-        String fmtDate = sdf.format(orientationDate);        
+    public String getNewMoveToCubicleDate(){
+//        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
+//        String fmtDate = sdf.format(orientationDate);        
         System.out.println(firstName + " " + lastName + " moved into cubicle "
-                + cubeId + " on " + fmtDate);
-        return getNewMoveToCubicle();
+                + cubeId + " on " + getFormattedDate());
+        return getFormattedDate();
     }
     
     public String getFirstName() {
@@ -171,5 +168,10 @@ public class Employee {
     }
 
     public void setOrientationDate(Date orientationDate) {
-        this.orientationDate = orientationDate;
-    }}
+        if(orientationDate == null){
+            System.out.println("Please enter in a date");
+        }else {
+            this.orientationDate = orientationDate;
+        }
+    }
+}
