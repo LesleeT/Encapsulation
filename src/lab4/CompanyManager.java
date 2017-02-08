@@ -10,14 +10,21 @@ package lab4;
  * @author ltrinastic
  */
 public class CompanyManager {
-    private HrManager convo;
+    private HrManager hrHire;
 
-    public CompanyManager(HrManager convo) {
-        this.convo = convo;
+    public CompanyManager(HrManager hrHire) {
+        hrHire = new HrManager();
+    }
+
+   public void hireEmployee(String firstName, String lastName, String ssn){
+        hrHire.hireEmployee(firstName, lastName, ssn);
     }
     
-    public void tellHrManagerHireEmp(){
-        
+    public HrManager getHrHire() {
+        return hrHire;
     }
-    
+
+    public void setHrHire(HrManager hrHire) {
+        this.hrHire = hrHire;
+    }  
 }
